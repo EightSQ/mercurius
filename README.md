@@ -4,10 +4,10 @@
 > - römische Entsprechung zum griechischen Gott Hermes
 
 ## Der Stack
-Mercurius basiert auf dem Realtime-Framework [Meteor](https://www.meteor.com/) und arbeitet mit MongoDB als Datenbank. Vorteil liegt hier bei der Unterstützung von Realtime-Aktualisierungen in der Anwendung. Auf eine API für externe Anwendungen (wie sie z.B. zum Eingeben von neuen Sendungen in das System durch externe Systeme, oder durch interne System für das Routing nötig werden), wird in diesem Software-Stack verzichtet, da der eigentliche Fokus auf der Webanwendung liegt. Jedoch ist es ohne Probleme, entsprechende APIs an die Datenbank anzubinden.
+Mercurius basiert auf dem Realtime-Framework [Meteor](https://www.meteor.com/) und arbeitet mit MongoDB als Datenbank. Vorteil liegt hier bei der Unterstützung von Realtime-Aktualisierungen in der Anwendung. Auf eine API für externe Anwendungen (wie sie z.B. zum Eingeben von neuen Sendungen in das System durch externe Systeme, oder durch interne System für das Routing nötig werden), wird in diesem Software-Stack verzichtet, da der eigentliche Fokus auf der Webanwendung liegt. Jedoch ist es ohne weiteres möglich, entsprechende APIs an die Datenbank anzubinden.
 
 ## Die Sendungsnummer
-Die **HUPID** (Hermes Universal Parcel Identification Number) besteht aus 19 Ziffern. Ein Vorteil dieser Länge liegt darin, eine Zahl dieser Größe als *unsigned long long* mit 64bit, d.h. in 8 Bytes platzsparend gespeichert werden kann.
+Die **HUPID** (Hermes Universal Parcel Identification Number) besteht aus 19 Ziffern. Ein Vorteil dieser Länge liegt darin, dass eine Zahl dieser Größe als *unsigned long long* mit 64bit, d.h. in 8 Bytes platzsparend gespeichert werden kann.
 
 ![HUPID Blueprint](/blueprints/hupid_blueprint.png)
 
