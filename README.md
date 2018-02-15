@@ -8,6 +8,7 @@ Mercurius basiert auf dem Realtime-Framework [Meteor](https://www.meteor.com/) u
 
 ## Die Sendungsnummer
 Die **HUPID** (Hermes Universal Parcel Identification Number) besteht aus 19 Ziffern. Ein Vorteil dieser Länge liegt darin, eine Zahl dieser Größe als *unsigned long long* mit 64bit, d.h. in 8 Bytes platzsparend gespeichert werden kann.
+
 ![HUPID Blueprint](/blueprints/hupid_blueprint.png)
 
 ### Type specifier
