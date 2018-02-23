@@ -6,6 +6,8 @@
 ## Der Stack
 Mercurius basiert auf dem Realtime-Framework [Meteor](https://www.meteor.com/) und arbeitet mit MongoDB als Datenbank. Vorteil liegt hier bei der Unterstützung von Realtime-Aktualisierungen in der Anwendung. Auf eine API für externe Anwendungen (wie sie z.B. zum Eingeben von neuen Sendungen in das System durch externe Systeme, oder durch interne System für das Routing nötig werden), wird in diesem Software-Stack verzichtet, da der eigentliche Fokus auf der Webanwendung liegt. Jedoch ist es ohne weiteres möglich, entsprechende APIs an die Datenbank anzubinden.
 
+**MongoDB** ist eine NoSQL-Datenbank, d.h. sie weicht von der strikten Normalisierung klassischer, relationaler Datenbanksysteme bewusst ab. Für unsere Zwecke eignet sich ein NoSQL-System dennoch gut, da wir so bei der Form der Daten flexibel sind, und ggf. später neue Datenformate (z.B. Kundennummern, Push-Notifications, Sondermeldungen, etc.) mit in die *documents* speichern können, ohne dafür aufwendig die Datenbankstruktur migrieren zu müssen (wie es bei einer klassischen Datenbankstruktur der Fall wäre. Zudem kann MongoDB Datenbestand wie auch Arbeitslast leichter als klassische Datenbanken auf mehrere Server verteilen, wodurch auch bei sehr großem Datenaufkommen (womit bei einem großen Versanddienstleister zu rechnen ist), das System skalierbar bleibt und nicht auf Grenzen der Erweiterbarkeit stoßen wird.
+
 ## Die Sendungsnummer
 Die **HUPID** (Hermes Universal Parcel Identification Number) besteht aus 19 Ziffern. Ein Vorteil dieser Länge liegt darin, dass eine Zahl dieser Größe als *unsigned long long* mit 64bit, d.h. in 8 Bytes platzsparend gespeichert werden kann.
 
@@ -23,6 +25,12 @@ Hermes unterhält 63 Paketzentren in Deutschland. Da der Unternehmensschwerpunkt
 ### Year specifier
 Zwei Ziffern für die Jahresangabe reichen aus, um für 100 Jahre eindeutige Sendungsnummern zu haben.
 
+### Checksumme
+Um beim Eintippen der Sendungsnummer nicht ständig auf Fehler zu tappen, enthält die **HUPID** eine Checksumme, die aus einfach mit einer Art von Quersumme gebildet wird (Codebeispiel zur Implementierung [hier](https://github.com/EightSQ/mercurius/blob/24c555764da82f799ab2fc51a18afc31c95e892c/imports/api/helpers.parcels.js#L13).
+
 ## Einrichtung
 
 Noch gibt es nichts einzurichten :(
+
+## Verwendung
+Das Skript zur Injektion von Demo-Daten in das System (um es ausprobieren zu können) speist mithilfe der kleinen API (die in der Praxis um Authentifikation erweitert werden muss), Daten in das System ein. Eine kurze Dokumentation dieser API befindet sich [hier](docs/API.md).
