@@ -1,0 +1,39 @@
+.trackbutton {
+	border: none;
+    color: white;
+    display: inline-block;
+	font-size: 2em;
+	padding: 6px 10px 6px 10px;
+	margin-left: 15px;
+}
+
+.trackbutton_gray {
+    background-color: #777777; /* Gray */
+}
+
+.trackbutton_green {
+    background-color: #4CAF50; /* Green */
+}
+
+.trackbutton:hover {
+	cursor: pointer;
+}
+
+.hupidtextfield {
+	background-color: #BBBBBB;
+	padding: 6px;
+	font-size: 2em;
+	font-weight: 100;
+	border: 0px;
+}
+
+#lp-container  {
+	padding-top: 10%;
+	margin: 0 auto;
+	width: 1024px;
+	text-align: center;
+}
+
+#lp-container h1 {
+	font-family: sans-serif;
+}

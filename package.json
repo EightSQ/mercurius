@@ -1,0 +1,27 @@
+{
+  "name": "mercurius",
+  "private": true,
+  "description": "a parcel tracking system",
+  "main": " ",
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.40",
+    "font-awesome": "^4.7.0",
+    "history": "^4.7.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "meteor run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EightSQ/mercurius.git"
+  },
+  "author": "EightSQ",
+  "bugs": {
+    "url": "https://github.com/EightSQ/mercurius/issues"
+  },
+  "homepage": "https://github.com/EightSQ/mercurius#readme"
+}
