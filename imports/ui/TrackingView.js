@@ -16,7 +16,7 @@ export default class TrackingView extends Component {
 				this.setState({ action: "unknown" });
 			} else {
 				this.setState({ action: "showData" });
-				Meteor.subscribe('parcelData', { hupid: this.props.match.params.hupid });
+				Meteor.subscribe('parcelData', this.props.match.params.hupid);
 			}
 		});
 	}
