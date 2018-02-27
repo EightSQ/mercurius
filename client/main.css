@@ -20,11 +20,23 @@
 }
 
 .hupidtextfield {
-	background-color: #BBBBBB;
 	padding: 6px;
 	font-size: 2em;
 	font-weight: 100;
 	border: 0px;
+}
+
+.hupidtextfield_gray {
+	background-color: #BBBBBB;
+}
+
+.hupidtextfield_green {
+	background-color: lightgreen;
+}
+
+.errortext {
+	color: red;
+	font-size: 1em;
 }
 
 #lp-container  {

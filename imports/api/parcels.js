@@ -21,5 +21,8 @@ Meteor.methods({
 			return "unknown";
 		else
 			return "showData"; // parcel exists
+	},
+	'generateNewHupid': () => {
+		return { hupid: helpers.generateRandomHUPID() };
 	}
 });

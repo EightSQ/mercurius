@@ -39,19 +39,29 @@ export default class TrackingLandingPage extends Component {
 		if (isNaN(this.enteredHupid)) {
 			newState.validity.errormsg = 'Invalid tracking number.';
 			newState.validity.enableSubmit = false;
+			this.setState(newState);
 		}
 
 		else if (this.enteredHupid.length == 19) {
-			// check for Validity
-			//
-			// if positive:
-			//
-			newState.validity.enableSubmit = true;
-			// if negative
-			//	newState.validity.errormsg = 'Invalid tracking number.';
-			// newState.validity.enableSubmit = false;
+			Meteor.call("checkHupid", this.enteredHupid, (err, res) => {
+				if (res === "showData" || res === "unknown") {
+					newState.validity.errormsg = '';
+					newState.validity.enableSubmit = true;
+				}
+				else {
+					newState.validity.errormsg = 'Invalid tracking number.';
+					newState.validity.enableSubmit = false;
+				}
+				this.setState(newState);
+			});
 		}
-		this.setState(newState);
+
+		else {
+			newState.validity.enableSubmit = false;
+			newState.validity.errormsg = '';
+			this.setState(newState);
+		}
+
 	}
 	render() {
 		const { redirect, validity } = this.state;
@@ -64,7 +74,8 @@ export default class TrackingLandingPage extends Component {
 				<TrackingForm
 						validity={validity}
 						changeHandler={this.handleChange}
-						submitHandler={this.handleSubmit}/>
+						submitHandler={this.handleSubmit}
+						errtxt={validity.errormsg}/>
 			</div>
 		);
 	}
