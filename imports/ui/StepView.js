@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
+/*
+ * Implementiert die blauen Boxen, die den Sendungsverlauf einfach sichtbar machen
+ */
 export default class StepView extends Component {
 	constructor(props) {
 		super(props)
@@ -9,6 +12,7 @@ export default class StepView extends Component {
 	render() {
 		if (this.props.parcelData) {
 
+		// überführe Kurztexte aller Steps in ein Array (zur einfacheren Verwendung unten)
 		let s = Array(6);
 		this.props.parcelData.steps.forEach((e, i) => {
 			if (s[e.stage] === undefined)

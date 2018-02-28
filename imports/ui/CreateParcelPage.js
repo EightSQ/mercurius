@@ -2,30 +2,41 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
+/* 
+ * Dies ist der Component für das kleine CreateParcel-Tool für die
+ * Injektion von Demo-Daten
+ */
 export default class CreateParcelPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			parcelCreated: ''
 		};
-		this.type = "0";
+		this.type = "0"; // initialize form input
 
+		// this-bindings, necessary for React + ES6
 		this.typeChangeHandler = this.handleTypeChange.bind(this);
 		this.submitHandler = this.handleSubmit.bind(this);
 		this.addStepHandler = this.addStep.bind(this);
 	}
+	// this function gets called on a submit of the create parcel form
 	handleSubmit(event) {
 		event.preventDefault();
+		// call the "createParcel" method in the backend (via WebSockets)
 		Meteor.call("createParcel", this.type, (err, res) => {
+			// callback: insert hupid of created parcel into component state
 			this.setState({
 				parcelCreated: res.hupid
 			});
+			// triggers re-rendering of Component
 		});
 	}
-	handleTypeChange(event) {
-		this.type = event.target.value;
+	handleTypeChange(event) { // type change (select field)
+		this.type = event.target.value; // change type variable of this component
 	}
+	// called when pressed "Sendungsstatus erneuern"
 	addStep() {
+		// call the "addStep" method in the backend (via WS)
 		Meteor.call("addStep", this.state.parcelCreated.toString());
 	}
 	render() {

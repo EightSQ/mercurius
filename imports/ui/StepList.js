@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
+/*
+ * Implementiert die Tabelle mit den Sendungsschritten
+ */
 export default class StepList extends Component {
 	render() {
-		if (this.props.parcelData !== undefined) {
+		if (this.props.parcelData !== undefined) { // keine Daten -> (erstmal) keine Tabelle
 
 		let steps = this.props.parcelData.steps;
+		// füge jedem Schritt einen eindeutigen key zu (benötigt für React)
 		steps.forEach((e,i) => {
 			e.key = this.props.parcelData.hupid + i.toString();
 		});

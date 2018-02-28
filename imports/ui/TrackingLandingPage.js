@@ -7,6 +7,9 @@ import TrackingForm from './TrackingForm';
 
 const INVALID_TRACKINGNUMBER_MSG = "Eingegebene Trackingnummer ist ungültig.";
 
+/*
+ * Implementiert die LandingPage
+ */
 export default class TrackingLandingPage extends Component {
 	constructor(props) {
 		super(props);
@@ -26,25 +29,30 @@ export default class TrackingLandingPage extends Component {
 			}
 		});
 	}
+	// Routine wird aufgerufen, wenn sich Eingabe in Trackingnummer-Eingabefeld
+	// ändert.
 	handleChange(event) {
 		if (event.target.value.length > 19)
 			event.target.value = this.enteredHupid; // too long -> set back
 		else
-			this.enteredHupid = event.target.value;
+			this.enteredHupid = event.target.value; // update memorized input
 
+		// scaffold for new state
 		let newState = {
 			validity: {
 				enableSubmit: false
 			}
 		};
 
+		// sind unerlaubte (nicht-numerische) Zeichen eingegeben worden?
 		if (isNaN(this.enteredHupid)) {
 			newState.validity.errormsg = INVALID_TRACKINGNUMBER_MSG;
 			newState.validity.enableSubmit = false;
 			this.setState(newState);
 		}
 
-		else if (this.enteredHupid.length == 19) {
+		else if (this.enteredHupid.length == 19) { // Numerische HUPID mit Länge 19?
+			// rufe das Backend zum Überprüfen der HUPID
 			Meteor.call("checkHupid", this.enteredHupid, (err, res) => {
 				if (res === "showData" || res === "unknown") {
 					newState.validity.errormsg = '';

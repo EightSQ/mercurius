@@ -8,10 +8,13 @@ import ParcelDataView from './ParcelDataView';
 
 const UNKNOWN_PARCEL_TEXT = "Leider ist uns bisher noch nichts über diese Sendung bekannt. Bitte versuchen sie es später noch einmal.";
 
+/*
+ * Abstrahiert die gesamte TrackingView (Tracking-Seite einer Sendung)
+ */
 export default class TrackingView extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
+		this.state = { // initialer Status -> Lade Daten
 			action: "loading"
 		};
 		Meteor.call('checkHupid', this.props.match.params.hupid, (err, res) => {
@@ -24,16 +27,18 @@ export default class TrackingView extends Component {
 		});
 	}
 	render() {
+		// Entscheide anhand von Status, was zu Zeigen ist
 		switch(this.state.action) {
-			case "loading":
+			case "loading": // wir warten noch auf Daten
 				return (<p>Loading...</p>);
 				break;
-			case "faulty":
+			case "faulty": // Die (über die URL) gegebene HUPID ist ungültig
+				// --> redirect zur LandingPage
 				return <Redirect to="/"/>;
 				break;
-			case "unknown":
+			case "unknown": // HUPID gültig, aber unbekannt
 				return <p style={{margin: '10px'}}>{UNKNOWN_PARCEL_TEXT} <a href="/">Zurück</a></p>
-			case "showData":
+			case "showData": // HUPID gültig und bekannt
 			default:
 				return <ParcelDataView
 							hupid={this.props.match.params.hupid}

@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
+/*
+ * Implementiert das Tracking-Eingabeformular auf der Landingpage
+ */
 export default class TrackingForm extends Component {
 	render() {
+		// decide which classes (designs) to use for the form,
+		// in relation to validity of entered HUPID
 		let buttonclass = "trackbutton trackbutton_gray";
 		let fieldclass = "hupidtextfield hupidtextfield_gray";
 		if (this.props.validity.enableSubmit) {

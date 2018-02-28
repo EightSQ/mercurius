@@ -10,6 +10,10 @@ import TrackingViewHeader from './TrackingViewHeader';
 import StepView from './StepView';
 import StepList from './StepList';
 
+/*
+ * abstrakte Komponente zur Komplexitätsbewältigung der Datenanzeige
+ * in der TrackingView
+ */
 class ParcelDataView extends Component {
 	constructor(props) {
 		super(props);
@@ -26,6 +30,11 @@ class ParcelDataView extends Component {
 	}
 }
 
+/*
+ * eigentlich wird dies zunächst eingehangen. Dies kommt vom Paket
+ * 'meteor/react-meteor-data' und sorgt dafür, dass neue Daten in
+ * der Datenbank, die uns betreffen, einen Re-Rendering verursachen
+ */
 export default withTracker(props => {
 	const handle = Meteor.subscribe('parcelData', props.hupid);
 

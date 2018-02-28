@@ -7,11 +7,14 @@ import helpers from './helpers.parcels';
 export const Parcels = new Mongo.Collection('parcels');
 
 if (Meteor.isServer) {
+	// publish data for specific HUPID to subscribing clients 
+	// necessary for the clients to be able to receive data
 	Meteor.publish('parcelData', (hupid) => {
 		return Parcels.find({hupid: hupid.toString()});
 	});
 
 	Meteor.methods({
+		// checkt die Gültigkeit einer geg. HUPID und gibt das Ergebnis zurück
 		'checkHupid': (hupid) => {
 			if (!helpers.isValidHUPID(hupid)) { // check whether entered id is invalid
 				return "faulty";
@@ -23,22 +26,31 @@ if (Meteor.isServer) {
 			else
 				return "unknown"; // parcel not exists
 		},
+
 		// Folgende Funktionen sind nur zu Demo-Zwecken implementiert:
+
+		// Erstellt eine neue Sendung mit gegebenen Typ
 		'createParcel': (type) => {
+			// generate new hupid
 			let hupid = helpers.generateRandomHUPIDWithType(type);
+			
+			// insert into database
 			Parcels.insert({hupid: hupid, steps: [{stage: 1, text: 'Sendung erstellt', longtext: 'Die Sendungsdaten wurden elektronisch übermittelt.', time: new Date()}]});
 			return { "hupid": hupid };
 		},
-		'createHalfwayParcel': () => {
-			return {};
-		},
+
+		// Fügt neuen Sendungsschritt in gegebene Sendung ein, falls nicht schon beendete Sendung
 		'addStep': (hupid) => {
+			// get current record of parcel
 			let record = Parcels.findOne({hupid: hupid});
-			if (record === undefined) return;
-			let currentStage = record.steps[0].stage;
-			if (currentStage === 5) return;
+			if (record === undefined) return; // parcel unknown -> return
+			let currentStage = record.steps[0].stage; // get last step (stage) of parcel
+			if (currentStage === 5) return; // parcel finished -> return
+
+			// scaffold the new step to insert to the parcel doc in the database
 			let nextStep = { stage: currentStage, text: "", longtext: "", time: new Date()};
 
+			// Insert stage-specific texts into new step
 			switch (currentStage) {
 				case 1:
 					nextStep.stage++;
@@ -69,7 +81,7 @@ if (Meteor.isServer) {
 					break;
 			}
 
-			
+			// insert new step into the array "steps" of the document of the parcel, ordered by time descending
 			Parcels.update(
 				{hupid: hupid},
 				{$push: {

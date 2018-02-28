@@ -8,6 +8,11 @@ import CreateParcelPage from '../../ui/CreateParcelPage.js';
 
 const browserHistory = createBrowserHistory();
 
+/* Hier geschieht das Routing der Webapplikation,
+ * die folgende Funktion wird später in das root-Element eingehangen
+ * und bestimmt anhand der URL, was angezeigt werden soll
+ * (d.h. welcher Component eingehangen werden soll)
+ */
 export const renderRoutes = () => (
 	<Router history={browserHistory}>
 		<div>
