@@ -153,3 +153,12 @@ th {
 	padding-bottom: 15px;
 }
 
+td {
+	padding-right: 15px;
+}
+
+/* demo stuff */
+#createParcelFormContainer {
+	margin: 10px;
+	font-family: sans-serif;
+}

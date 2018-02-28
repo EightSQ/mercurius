@@ -22,6 +22,17 @@ module.exports = {
 			dpz =  genRandomNumStringBetween(0,99,2),
 			chk =  FormatNumberLength((parseInt(type)+parseInt(uid)-parseInt(year)+parseInt(day)*Math.abs(parseInt(opz)-parseInt(dpz))) % 100,2);
 		return type+uid+year+day+opz+dpz+chk;
+	},
+	generateRandomHUPIDWithType: (reqType) => {
+		let date = new Date();
+		let type = reqType.toString().slice(0,1),
+			uid =  genRandomNumStringBetween(0,9999999,7),
+			year = FormatNumberLength(date.getYear()-100,2),
+			day =  FormatNumberLength(getDOY(date),3),
+			opz =  genRandomNumStringBetween(0,99,2),
+			dpz =  genRandomNumStringBetween(0,99,2),
+			chk =  FormatNumberLength((parseInt(type)+parseInt(uid)-parseInt(year)+parseInt(day)*Math.abs(parseInt(opz)-parseInt(dpz))) % 100,2);
+		return type+uid+year+day+opz+dpz+chk;
 	}
 };
 
