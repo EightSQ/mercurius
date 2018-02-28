@@ -30,7 +30,6 @@ export default withTracker(props => {
 	const handle = Meteor.subscribe('parcelData', props.hupid);
 
 	return {
-		alertText: props.alertText,
 		parcelData: Parcels.findOne({hupid: props.hupid.toString()}),
 		action: props.action,
 		hupid: props.hupid

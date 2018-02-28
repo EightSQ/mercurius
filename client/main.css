@@ -141,3 +141,11 @@
 	}
 
 }
+
+#steplist {
+	text-align: left;
+	font-family: sans-serif;
+	margin-top: 20px;
+	margin-left: 10px;
+}
+

@@ -32,11 +32,11 @@ export default class TrackingView extends Component {
 				return <Redirect to="/"/>;
 				break;
 			case "unknown":
+				return <p style={{margin: '10px'}}>{UNKNOWN_PARCEL_TEXT} <a href="/">Zurück</a></p>
 			case "showData":
 			default:
 				return <ParcelDataView
 							hupid={this.props.match.params.hupid}
-							alertText={this.state.alertText}
 							action={this.state.action}/>;
 				break;
 		}
