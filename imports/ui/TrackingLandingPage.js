@@ -5,6 +5,8 @@ import { Redirect } from 'react-router';
 
 import TrackingForm from './TrackingForm';
 
+const INVALID_TRACKINGNUMBER_MSG = "Eingegebene Trackingnummer ist ungültig.";
+
 export default class TrackingLandingPage extends Component {
 	constructor(props) {
 		super(props);
@@ -37,7 +39,7 @@ export default class TrackingLandingPage extends Component {
 		};
 
 		if (isNaN(this.enteredHupid)) {
-			newState.validity.errormsg = 'Invalid tracking number.';
+			newState.validity.errormsg = INVALID_TRACKINGNUMBER_MSG;
 			newState.validity.enableSubmit = false;
 			this.setState(newState);
 		}
@@ -49,7 +51,7 @@ export default class TrackingLandingPage extends Component {
 					newState.validity.enableSubmit = true;
 				}
 				else {
-					newState.validity.errormsg = 'Invalid tracking number.';
+					newState.validity.errormsg = INVALID_TRACKINGNUMBER_MSG;
 					newState.validity.enableSubmit = false;
 				}
 				this.setState(newState);
@@ -76,6 +78,7 @@ export default class TrackingLandingPage extends Component {
 						changeHandler={this.handleChange}
 						submitHandler={this.handleSubmit}
 						errtxt={validity.errormsg}/>
+				<a className="lp-link" href="/new">Neue Sendung erstellen</a>
 			</div>
 		);
 	}
