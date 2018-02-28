@@ -20,6 +20,7 @@
 }
 
 .hupidtextfield {
+	margin-top: 15px;
 	padding: 6px;
 	font-size: 2em;
 	font-weight: 100;
@@ -48,4 +49,95 @@
 
 #lp-container h1 {
 	font-family: sans-serif;
+}
+
+
+/* tracking view styling */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 0px;
+	align-items: center;
+	grid-template: 	"header header"
+					"step1 step2"
+					"step3 step3"
+					"step4 step5"
+					"list list";
+}
+
+.header {
+	padding: 15px;
+	grid-area: header;
+}
+
+.header > h2 {
+	font-family: sans-serif;
+}
+
+.step {
+	padding: 30px 5px 30px 5px;
+	text-align: center;
+	background-color: lightblue;
+	color: lightgray;
+}
+
+#step1 {
+	grid-area: step1;
+}
+
+#step2 {
+	grid-area: step2;
+}
+
+#step3 {
+	grid-area: step3;
+}
+
+#step4 {
+	grid-area: step4;
+}
+
+#step5 {
+	grid-area: step5;
+}
+
+#tracking-list {
+	padding-top: 20px;
+	grid-area: list;
+}
+
+.step .svg-inline--fa {
+	font-size: 3em;
+}
+
+.step_taken {
+	background-color: darkblue;
+	color: white;
+}
+
+.steptext {
+	display: none;
+}
+
+.step_taken .steptext {
+	display: inline;
+}
+
+@media screen and (min-width: 780px) {
+
+	.grid {
+		display: grid;
+		grid-template-columns: 0.2 0.2 0.2 0.2 0.2;
+		grid-gap: 12px;
+		align-items: center;
+		grid-template: 	"header header header header header"
+						"step1 step2 step3 step4 step5"
+						". list list list .";
+	}
+
 }
