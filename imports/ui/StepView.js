@@ -2,25 +2,13 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
-import { find } from 'lodash.find';
-
 export default class StepView extends Component {
 	constructor(props) {
 		super(props)
 	}
 	render() {
 		if (this.props.parcelData) {
-//		let s1 = _.find(this.props.parcelData.steps, {"step": 1});
-//		let s1t = s1 !== undefined ? s1.text : '';
-//		let s2 = _.find(this.props.parcelData.steps, {"step": 2});
-//		let s2t = s2 !== undefined ? s2.text : '';
-//		let s3 = _.find(this.props.parcelData.steps, {"step": 3});
-//		let s3t = s3 !== undefined ? s3.text : '';
-//		let s4 = _.find(this.props.parcelData.steps, {"step": 4});
-//		let s4t = s4 !== undefined ? s4.text : '';
-//		let s5 = _.find(this.props.parcelData.steps, {"step": 5});
-//		let s5t = s5 !== undefined ? s5.text : '';
-		
+
 		let s = Array(6);
 		this.props.parcelData.steps.forEach((e, i) => {
 			if (s[e.stage] === undefined)
