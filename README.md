@@ -30,12 +30,15 @@ Zwei Ziffern für die Jahresangabe reichen aus, um für 100 Jahre eindeutige Sen
 ### Checksumme
 Um beim Eintippen der Sendungsnummer nicht ständig auf Fehler zu tappen, enthält die **HUPID** eine Checksumme, die aus einfach mit einer Art von Quersumme gebildet wird (Codebeispiel zur Implementierung [hier](https://github.com/EightSQ/mercurius/blob/24c555764da82f799ab2fc51a18afc31c95e892c/imports/api/helpers.parcels.js#L13).
 
+### Implementierung
+In meiner Implementierung (dieser Anwendung) befindet sich die gesamte Logik das Generieren und validieren der HUPIDs im Backend. Das Frontend greift auf die entsprechenden Methoden über Meteor *methods* zu. (Siehe auch [hier](https://guide.meteor.com/methods.html#what-is-a-method))
+
 ## Einrichtung
 
-1. Docker container bauen: `docker build -t eightsq/mercurius .`
+1. Docker Container bauen: `docker build -t eightsq/mercurius .`
 2. Container starten: `docker run -d -p 3000:3000 eightsq/mercurius`
-3. Enjoy the show at [](http://localhost:3000)
+3. Enjoy the show at [localhost:3000](http://localhost:3000)
 
 ## Bedienung des Demo-Modus
 
-Die Grundfunktionalität ist stets unter [](http://localhost:3000) erreichbar. Unterhalb der Trackingnummer-Eingabezeile befindet sich ein Link "Neue Sendung erstellen". Dahinter verbirgt sich ein kleines Tool, mit dem Daten generiert und in die Datenbank injiziert werden können. Mit dem Tool lässt sich der Sendungstyp einstellen, in der Praxis gehört natürlich eine Ermittlung von Start- und Ziel-Paketzentrum mit dazu. Ein Klick auf "Sendung erstellen" erstellt die Sendung anschließend in der Datenbank. Die Sendungsnummer der erstellten Sendung erscheint nun als Link. Es empfiehlt sich, das Tracking (hinter dem Link) in einem neuen Tab zu öffnen, da die erstellte Sendung, einmal aus dem Tool heraus, nicht mehr über das Tool "weitergebracht" werden kann. Mit einem Klick auf auf "Sendungsstatus erneuern" lässt sich die bereits erstellte Sendung einen Transportschritt weiter schieben. Die Änderung lässt sich, dank Realtime-Push des Frameworks MeteorJS im anderen Tab mit der Tracking-View live beobachten.
+Die Grundfunktionalität ist stets unter [localhost:3000](http://localhost:3000) erreichbar. Unterhalb der Trackingnummer-Eingabezeile befindet sich ein Link "Neue Sendung erstellen". Dahinter verbirgt sich ein kleines Tool, mit dem Daten generiert und in die Datenbank injiziert werden können. Mit dem Tool lässt sich der Sendungstyp einstellen, in der Praxis gehört natürlich eine Ermittlung von Start- und Ziel-Paketzentrum mit dazu. Ein Klick auf "Sendung erstellen" erstellt die Sendung anschließend in der Datenbank. Die Sendungsnummer der erstellten Sendung erscheint nun als Link. Es empfiehlt sich, das Tracking (hinter dem Link) in einem neuen Tab zu öffnen, da die erstellte Sendung, einmal aus dem Tool heraus, nicht mehr über das Tool "weitergebracht" werden kann. Mit einem Klick auf auf "Sendungsstatus erneuern" lässt sich die bereits erstellte Sendung einen Transportschritt weiter schieben. Die Änderung lässt sich, dank Realtime-Push des Frameworks MeteorJS im anderen Tab mit der Tracking-View live beobachten.
